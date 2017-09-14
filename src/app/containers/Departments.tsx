@@ -2,14 +2,16 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { PageHeader } from '../components/layout/PageHeader';
+
 /**
  * Departments page container
  */
 class Departments extends React.PureComponent<{}, {}> {
   public render() {
     return (
-      <div>
-        <h1>departments</h1>
+      <div className="content">
+        <PageHeader title={'Departments management'}/>
       </div>
     );
   }
