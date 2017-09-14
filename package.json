@@ -5,6 +5,7 @@
   "main": "build/server.js",
   "scripts": {
     "clean": "rimraf build",
+    "start-api-server": "json-server --watch ./api/db.json --routes ./api/routes.json --port 3005",
     "prebuild": "npm run clean",
     "build": "webpack --config config/webpack/index.js",
     "build:prod": "cross-env NODE_ENV=production npm run build",
@@ -101,6 +102,7 @@
     "express": "^4.14.0",
     "history": "^4.5.1",
     "isomorphic-fetch": "^2.2.1",
+    "json-server": "^0.12.0",
     "react": "~15.4.2",
     "react-css-modules": "^4.1.0",
     "react-dom": "~15.4.2",
