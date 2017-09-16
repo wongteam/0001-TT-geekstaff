@@ -51,7 +51,7 @@ export const updateDepartment = (action$: any) => action$
   .switchMap((action: any) => Observable.of({ type: types.DEPARTMENTS_UPDATE_START })
     .concat(
       Observable
-        .fromPromise(invokeAPI('put', withBaseUrl(DEPARTMENTS), action.department))
+        .fromPromise(invokeAPI('put', withBaseUrl(`${DEPARTMENTS}/${action.department.id}`), action.department))
         .map((department: IDepartment) => updateDepartmentSuccess(department))
         .catch((error: any) => Observable.of({ type: types.DEPARTMENTS_UPDATE_ERROR, error })),
     ));
