@@ -5,7 +5,8 @@ import { get, isUndefined } from 'lodash';
 export interface IProps {
   onSubmit(department: IDepartment): void;
   defaultData?: IDepartment;
-  inlineMode?: boolean;
+  editMode?: boolean;
+  onEditCancel?(): void;
 }
 
 export interface IState {
@@ -51,6 +52,7 @@ class DepartmentForm extends React.PureComponent<IProps, IState> {
   private submitForm = (e: any) => {
     e.preventDefault();
     const { name, formIsValid } = this.state;
+    const { editMode } = this.props;
     if (!formIsValid) {
       return this.setState({...this.state, validationError: 'Name is invalid'});
     }
@@ -58,22 +60,47 @@ class DepartmentForm extends React.PureComponent<IProps, IState> {
       ...this.props.defaultData,
       name,
     });
+
+    // reset name if non edit mode
+    if (!editMode) {
+      this.setState({...this.state, name: ''});
+    }
+  }
+
+  private editCancelHandler = () => {
+    const { onEditCancel } = this.props;
+    if (!isUndefined(onEditCancel)) {
+      onEditCancel();
+    }
   }
 
   public render() {
     const { validationError, formIsValid, name } = this.state;
-    const { inlineMode } = this.props;
-    if (inlineMode) {
+    const { editMode } = this.props;
+    if (editMode) {
       return (
         <td>
-          <label htmlFor="name">Name:</label>
-          <input type="text" className="form-control" value={name} onChange={this.nameOnChange} />
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input type="text" className="form-control" value={name} onChange={this.nameOnChange} />
+          </div>
           {validationError.length > 0 && renderFormError(validationError)}
-          <button onClick={this.submitForm}
-                  className="btn btn-primary btn-xs" type="button"
-                  disabled={!formIsValid}>
-            <i className="fa fa-check"/>
-          </button>
+          <div className="form-group pull-right">
+            <button onClick={this.editCancelHandler}
+                    className="btn btn-warning btn-xs" type="button"
+                    disabled={!formIsValid}
+                    style={{marginRight: '10px'}}
+            >
+              <i className="fa fa-ban"/>
+            </button>
+            <button onClick={this.submitForm}
+                    className="btn btn-primary btn-xs" type="button"
+                    disabled={!formIsValid}
+                    style={{marginRight: '10px'}}
+            >
+              <i className="fa fa-check"/>
+            </button>
+          </div>
         </td>
       );
     }

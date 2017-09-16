@@ -48,8 +48,9 @@ class DepartmentsTable extends React.PureComponent<IProps, IState> {
     const { removeHandler, updateHandler } = this.props;
     const selectedId = get(this.state, 'selectedDepartment.id', 0);
     const formProps: formProps = {
-      inlineMode: true,
+      editMode: true,
       onSubmit: (formData: IDepartment) => this.deSelectDepartment() && updateHandler(formData),
+      onEditCancel: this.deSelectDepartment,
     };
     return data.map((d: IDepartment, i: number) => (
       <tr key={i}>

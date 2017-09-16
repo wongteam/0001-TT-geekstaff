@@ -36,13 +36,14 @@ class Departments extends React.PureComponent<{} & IMappedProps, {}> {
                 <DepartmentForm onSubmit={actions.createDepartment}/>
               </SimpleBox>
             </div>
+            <div className="col-md-6 col-sm-12">
+              <SimpleBox title="Departments list" noPadding={true}>
+                <DepartmentsTable data={departments}
+                                  removeHandler={actions.deleteDepartment}
+                                  updateHandler={actions.updateDepartment} />
+              </SimpleBox>
+            </div>
           </div>
-
-          <SimpleBox title="Departments list" noPadding={true}>
-            <DepartmentsTable data={departments}
-                              removeHandler={actions.deleteDepartment}
-                              updateHandler={actions.updateDepartment} />
-          </SimpleBox>
         </section>
       </div>
     );
