@@ -48,8 +48,13 @@ export const fetchDepartmentSuccess = (department: IDepartment): any => ({
 export const createDepartment = (department: IDepartment): any => ({
   type: types.DEPARTMENTS_CREATE_API_CALL, department});
 
-export const createDepartmentSuccess = (department: IDepartment): any => ({
-  type: types.DEPARTMENTS_CREATE_SUCCESS, department});
+export const createDepartmentSuccess = (department: IDepartment): any => {
+  return (dispatch: any) => {
+    dispatch({type: types.DEPARTMENTS_CREATE_SUCCESS, department});
+    // fetch all
+    dispatch(fetchDepartments());
+  };
+};
 
 export const updateDepartment = (department: IDepartment): any => ({
   type: types.DEPARTMENTS_UPDATE_API_CALL, department});
@@ -60,5 +65,9 @@ export const updateDepartmentSuccess = (department: IDepartment): any => ({
 export const deleteDepartment = (id: number): any => ({
   type: types.DEPARTMENTS_DELETE_API_CALL, id});
 
-export const deleteDepartmentSuccess = (): any => ({
-  type: types.DEPARTMENTS_DELETE_SUCCESS});
+export const deleteDepartmentSuccess = (): any => {
+  return (dispatch: any) => {
+    dispatch({type: types.DEPARTMENTS_DELETE_SUCCESS});
+    dispatch(fetchDepartments());
+  };
+};

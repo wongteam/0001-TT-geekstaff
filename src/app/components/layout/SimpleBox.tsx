@@ -16,7 +16,7 @@ export const SimpleBox = (props: IProps) => (
     <div className="box-header">
       <h3 className="box-title">{props.title}</h3>
     </div>
-    <div className={`box-body table-responsive ${props.noPadding ? 'no-padding' : ''}`}>
+    <div className={`box-body ${props.noPadding ? 'no-padding' : ''}`}>
       {props.children}
     </div>
   </div>

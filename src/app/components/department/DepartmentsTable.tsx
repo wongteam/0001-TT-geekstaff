@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { get } from 'lodash';
+
 import { IDepartment } from '../../models/IDepartment';
+import { DepartmentForm, IProps as formProps } from './DepartmentForm';
 
 export interface IProps {
   data: IDepartment[];
@@ -7,8 +10,14 @@ export interface IProps {
   updateHandler(department: IDepartment): void;
 }
 
+const renderInlineForm = (props: formProps, defaultData: IDepartment) => {
+  return (
+    (<DepartmentForm defaultData={defaultData} {...props}/>)
+  );
+};
+
 export interface IState {
-  selectedDepartment: IDepartment;
+  selectedDepartment: IDepartment | null;
 }
 
 class DepartmentsTable extends React.PureComponent<IProps, IState> {
@@ -26,12 +35,26 @@ class DepartmentsTable extends React.PureComponent<IProps, IState> {
     });
   }
 
+  private deSelectDepartment = (): boolean => {
+    this.setState({
+      ...this.state,
+      selectedDepartment: null,
+    });
+
+    return true;
+  }
+
   private renderRows = (data: IDepartment[]): any[] => {
-    const { removeHandler } = this.props;
+    const { removeHandler, updateHandler } = this.props;
+    const selectedId = get(this.state, 'selectedDepartment.id', 0);
+    const formProps: formProps = {
+      inlineMode: true,
+      onSubmit: (formData: IDepartment) => this.deSelectDepartment() && updateHandler(formData),
+    };
     return data.map((d: IDepartment, i: number) => (
       <tr key={i}>
         <td>{d.id}</td>
-        <td>{d.name}</td>
+        {selectedId === d.id ? renderInlineForm(formProps, d) : (<td>{d.name}</td>)}
         <td className="text-center">
           <button type="button" className="btn btn-flat btn-primary btn-xs"
                   onClick={(_: any) => this.selectDepartment(d)}>

@@ -7,7 +7,7 @@ import * as departmentActions from '../redux/modules/department/actions';
 import { SimpleBox } from '../components/layout/SimpleBox';
 import { PageHeader } from '../components/layout/PageHeader';
 import { DepartmentsTable } from '../components/department/DepartmentsTable';
-
+import { DepartmentForm } from '../components/department/DepartmentForm';
 export interface IMappedProps {
   actions: departmentActions.IDepartmentActions;
   departments: any;
@@ -30,6 +30,14 @@ class Departments extends React.PureComponent<{} & IMappedProps, {}> {
       <div className="content">
         <PageHeader title={'Departments management'}/>
         <section className="content">
+          <div className="row">
+            <div className="col-md-6 col-sm-12">
+              <SimpleBox title="Add a new department" noPadding={false}>
+                <DepartmentForm onSubmit={actions.createDepartment}/>
+              </SimpleBox>
+            </div>
+          </div>
+
           <SimpleBox title="Departments list" noPadding={true}>
             <DepartmentsTable data={departments}
                               removeHandler={actions.deleteDepartment}

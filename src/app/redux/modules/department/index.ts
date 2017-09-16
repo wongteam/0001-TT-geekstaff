@@ -8,6 +8,12 @@ const departments = createReducer(initialState, {
     ...state,
     departments,
   }),
+
+  [types.DEPARTMENTS_UPDATE_SUCCESS]: (state: any, {department}) => {
+    const newState = {...state};
+    newState.departments[department.id] = department;
+    return newState;
+  },
 });
 
 export {departments}
