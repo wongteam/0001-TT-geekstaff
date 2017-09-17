@@ -5,6 +5,7 @@ ADD . .
 
 RUN npm install
 
-EXPOSE 8889
+EXPOSE 3000
+EXPOSE 3005
 
 CMD ["npm", "run", "start:prod"]
