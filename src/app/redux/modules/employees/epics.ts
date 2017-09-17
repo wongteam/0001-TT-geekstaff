@@ -49,7 +49,7 @@ export const updateEmployees = (action$: any) => action$
   .switchMap((action: any) => Observable.of({ type: types.EMPLOYEES_UPDATE_START })
     .concat(
       Observable
-        .fromPromise(invokeAPI('put', withBaseUrl(`${EMPLOYEES}/${action.employees.id}`), action.employees))
+        .fromPromise(invokeAPI('put', withBaseUrl(`${EMPLOYEES}/${action.id}`), action.employees))
         .map((response: IEmployee) => updateEmployeesSuccess(response))
         .catch((error: any) => Observable.of({ type: types.EMPLOYEES_UPDATE_ERROR, error })),
     ));
