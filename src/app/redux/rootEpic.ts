@@ -15,6 +15,10 @@ import {
   deleteEmployees,
 } from './modules/employees/epics';
 
+import {
+  fetchStatisticsData,
+} from './modules/dashboard/epics';
+
 const rootEpic = combineEpics(
   fetchDepartments,
   fetchDepartment,
@@ -26,6 +30,8 @@ const rootEpic = combineEpics(
   createEmployee,
   updateEmployees,
   deleteEmployees,
+
+  fetchStatisticsData,
 );
 
 export { rootEpic }
