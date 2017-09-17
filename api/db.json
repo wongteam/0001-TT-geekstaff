@@ -27,10 +27,10 @@
       "departmentId": 2
     },
     {
-      "id": 3,
+      "departmentId": 2,
       "firstName": "Anna",
       "lastName": "Thomson",
-      "departmentId": 2
+      "id": 3
     },
     {
       "id": 4,
@@ -39,13 +39,13 @@
       "departmentId": 3
     },
     {
-      "id": 4,
+      "id": 5,
       "firstName": "Luis",
       "lastName": "Cross",
       "departmentId": 1
     },
     {
-      "id": 1,
+      "id": 6,
       "firstName": "Melissa",
       "lastName": "Ross",
       "departmentId": 3
