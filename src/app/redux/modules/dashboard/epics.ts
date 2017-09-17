@@ -5,6 +5,10 @@ import { DEPARTMENTS, withBaseUrl } from '../../../constants/api-endpoints';
 import { DATA_FETCH_API_CALL, DATA_FETCH_API_START } from './types';
 import { fetchStatisticsDataSuccess } from './actions';
 
+/**
+ * Fetch statistics epic
+ * @param action$
+ */
 export const fetchStatisticsData = (action$: any) => action$
   .ofType(DATA_FETCH_API_CALL)
   .switchMap((_: any) => Observable.of({ type: DATA_FETCH_API_START })

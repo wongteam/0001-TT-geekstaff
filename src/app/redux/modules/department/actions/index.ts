@@ -45,6 +45,11 @@ export const fetchDepartment = (id: number): any => ({
 export const fetchDepartmentSuccess = (department: IDepartment): any => ({
   type: types.DEPARTMENT_FETCH_SUCCESS, department});
 
+/**
+ * create a departments request initiator (for epic)
+ * @param {IDepartment} department
+ * @returns {any}
+ */
 export const createDepartment = (department: IDepartment): any => ({
   type: types.DEPARTMENTS_CREATE_API_CALL, department});
 
@@ -56,15 +61,34 @@ export const createDepartmentSuccess = (department: IDepartment): any => {
   };
 };
 
+/**
+ * Update department (for epic)
+ * @param {IDepartment} department
+ * @returns {any}
+ */
 export const updateDepartment = (department: IDepartment): any => ({
   type: types.DEPARTMENTS_UPDATE_API_CALL, department});
 
+/**
+ * Updated successfully
+ * @param {IDepartment} department
+ * @returns {any}
+ */
 export const updateDepartmentSuccess = (department: IDepartment): any => ({
   type: types.DEPARTMENTS_UPDATE_SUCCESS, department});
 
+/**
+ * Delete department (epic initiator)
+ * @param {number} id
+ * @returns {any}
+ */
 export const deleteDepartment = (id: number): any => ({
   type: types.DEPARTMENTS_DELETE_API_CALL, id});
 
+/**
+ * Epic deleted successfully
+ * @returns {any}
+ */
 export const deleteDepartmentSuccess = (): any => {
   return (dispatch: any) => {
     dispatch({type: types.DEPARTMENTS_DELETE_SUCCESS});

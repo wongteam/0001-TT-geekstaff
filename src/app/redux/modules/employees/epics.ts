@@ -1,3 +1,5 @@
+// employees epics
+
 import { Observable } from 'rxjs';
 
 import { EMPLOYEES, withBaseUrl } from '../../../constants/api-endpoints';
@@ -11,6 +13,10 @@ import {
 } from './actions';
 import { IEmployee } from '../../../models/IEmployee';
 
+/**
+ * Fetch all employees
+ * @param action$
+ */
 export const fetchEmployees = (action$: any) => action$
   .ofType(types.EMPLOYEES_FETCH_API_CALL)
   // .debounceTime(1000) // optional
@@ -34,6 +40,10 @@ export const fetchEmployees = (action$: any) => action$
 //         .catch((error: any) => Observable.of({ type: types.DEPARTMENT_FETCH_ERROR, error })),
 //     ));
 
+/**
+ * create an employees
+ * @param action$
+ */
 export const createEmployee = (action$: any) => action$
   .ofType(types.EMPLOYEES_CREATE_API_CALL)
   .switchMap((action: any) => Observable.of({ type: types.EMPLOYEES_CREATE_START })
@@ -44,6 +54,10 @@ export const createEmployee = (action$: any) => action$
         .catch((error: any) => Observable.of({ type: types.EMPLOYEES_CREATE_ERROR, error })),
     ));
 
+/**
+ * Update employees
+ * @param action$
+ */
 export const updateEmployees = (action$: any) => action$
   .ofType(types.EMPLOYEES_UPDATE_API_CALL)
   .switchMap((action: any) => Observable.of({ type: types.EMPLOYEES_UPDATE_START })
@@ -54,6 +68,10 @@ export const updateEmployees = (action$: any) => action$
         .catch((error: any) => Observable.of({ type: types.EMPLOYEES_UPDATE_ERROR, error })),
     ));
 
+/**
+ * delete an employees
+ * @param action$
+ */
 export const deleteEmployees = (action$: any) => action$
   .ofType(types.EMPLOYEES_DELETE_API_CALL)
   .switchMap((action: any) => Observable.of({ type: types.EMPLOYEES_DELETE_START })

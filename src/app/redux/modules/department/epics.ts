@@ -1,3 +1,4 @@
+// department's epic
 import { Observable } from 'rxjs';
 
 import { DEPARTMENTS, withBaseUrl } from '../../../constants/api-endpoints';
@@ -12,6 +13,10 @@ import {
 } from './actions';
 import {IDepartment} from '../../../models/IDepartment';
 
+/**
+ * fetch departments
+ * @param action$
+ */
 export const fetchDepartments = (action$: any) => action$
   .ofType(types.DEPARTMENTS_FETCH_API_CALL)
   .debounceTime(1000)
@@ -25,6 +30,11 @@ export const fetchDepartments = (action$: any) => action$
         .catch((error: any) => Observable.of({ type: types.DEPARTMENTS_FETCH_ERROR, error })),
     ));
 
+/**
+ * Fetch single department
+ * This epic won't use in current version
+ * @param action$
+ */
 export const fetchDepartment = (action$: any) => action$
   .ofType(types.DEPARTMENT_FETCH_API_CALL)
   .debounceTime(1000)
@@ -36,6 +46,10 @@ export const fetchDepartment = (action$: any) => action$
         .catch((error: any) => Observable.of({ type: types.DEPARTMENT_FETCH_ERROR, error })),
     ));
 
+/**
+ * Create a new department
+ * @param action$
+ */
 export const createDepartment = (action$: any) => action$
   .ofType(types.DEPARTMENTS_CREATE_API_CALL)
   .switchMap((action: any) => Observable.of({ type: types.DEPARTMENTS_CREATE_START })
@@ -46,6 +60,10 @@ export const createDepartment = (action$: any) => action$
         .catch((error: any) => Observable.of({ type: types.DEPARTMENTS_CREATE_ERROR, error })),
     ));
 
+/**
+ * Update department
+ * @param action$
+ */
 export const updateDepartment = (action$: any) => action$
   .ofType(types.DEPARTMENTS_UPDATE_API_CALL)
   .switchMap((action: any) => Observable.of({ type: types.DEPARTMENTS_UPDATE_START })
@@ -56,6 +74,10 @@ export const updateDepartment = (action$: any) => action$
         .catch((error: any) => Observable.of({ type: types.DEPARTMENTS_UPDATE_ERROR, error })),
     ));
 
+/**
+ * Delete a department
+ * @param action$
+ */
 export const deleteDepartment = (action$: any) => action$
   .ofType(types.DEPARTMENTS_DELETE_API_CALL)
   .switchMap((action: any) => Observable.of({ type: types.DEPARTMENTS_DELETE_START })
