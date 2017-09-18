@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { SideBar } from '../components/layout/Sidebar';
 
 const SIDEBAR_MENU_ITEMS = [
+  {text: 'Dashboard', urlPath: '/'},
   {text: 'Departments', urlPath: '/departments'},
   {text: 'Employees', urlPath: '/employees'},
 ];
