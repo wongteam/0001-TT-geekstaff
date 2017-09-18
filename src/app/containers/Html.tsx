@@ -9,6 +9,11 @@ interface IHtmlProps {
   store?: Redux.Store<IStore>;
 }
 
+const INITIAL_STYLES = {
+  height: 'auto',
+  minHeight: '100%',
+};
+
 class Html extends React.Component<IHtmlProps, {}> {
   private resolve(files) {
     return files.map((src) => {
@@ -38,7 +43,7 @@ class Html extends React.Component<IHtmlProps, {}> {
     );
 
     return (
-      <html>
+      <html style={INITIAL_STYLES}>
         <head>
           {head.base.toComponent()}
           {head.title.toComponent()}
@@ -49,8 +54,11 @@ class Html extends React.Component<IHtmlProps, {}> {
           {renderStyles}
           <link rel="shortcut icon" href="/favicon.ico" />
         </head>
-        <body>
-          <main id="app" dangerouslySetInnerHTML={{ __html: markup }} />
+        <body className="skin-blue sidebar-mini" style={INITIAL_STYLES}>
+          <div className="wrapper"
+               id="app"
+               style={INITIAL_STYLES}
+               dangerouslySetInnerHTML={{ __html: markup }} />
           {initialState}
           {renderScripts}
         </body>

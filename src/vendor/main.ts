@@ -1,6 +1,8 @@
-/**
- * This is an entry point for additional assets, require your assets under this file.
- * Example:
- *   require('./bootstrap/css/bootstrap.min.css');
- * If you try using bootstrap 4, see: https://github.com/shakacode/bootstrap-loader/issues/244
- */
+// twitter bootstrap
+require('bootstrap/dist/css/bootstrap.css');
+// AdminLTE theme
+require('./styles/AdminLTE.css');
+// blue skin for AdminLTE
+require('./styles/skin-blue.css');
+// font awesome.
+require('font-awesome/css/font-awesome.css');

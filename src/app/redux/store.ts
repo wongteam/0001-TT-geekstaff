@@ -1,16 +1,21 @@
 const appConfig = require('../../../config/main');
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
+import { createEpicMiddleware } from 'redux-observable';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import { IStore } from './IStore';
+
+import { rootEpic } from './rootEpic';
 const createLogger = require('redux-logger');
 
 export function configureStore(history, initialState?: IStore): Redux.Store<IStore> {
 
+  const epicMiddleware = createEpicMiddleware(rootEpic);
   const middlewares: Redux.Middleware[] = [
     routerMiddleware(history),
     thunk,
+    epicMiddleware,
   ];
 
   /** Add Only Dev. Middlewares */

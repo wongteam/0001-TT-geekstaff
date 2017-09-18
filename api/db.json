@@ -1,0 +1,54 @@
+{
+  "departments": [
+    {
+      "id": 1,
+      "name": "TTA innovation"
+    },
+    {
+      "id": 2,
+      "name": "DevOps researching"
+    },
+    {
+      "id": 3,
+      "name": "IQA group"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "departmentId": 1
+    },
+    {
+      "id": 2,
+      "firstName": "Nick",
+      "lastName": "Morgan",
+      "departmentId": 2
+    },
+    {
+      "departmentId": 2,
+      "firstName": "Anna",
+      "lastName": "Thomson",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "firstName": "Jack",
+      "lastName": "Peterson",
+      "departmentId": 3
+    },
+    {
+      "id": 5,
+      "firstName": "Luis",
+      "lastName": "Cross",
+      "departmentId": 1
+    },
+    {
+      "id": 6,
+      "firstName": "Melissa",
+      "lastName": "Ross",
+      "departmentId": 3
+    }
+  ]
+}

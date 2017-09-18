@@ -3,8 +3,13 @@
   "version": "0.0.1",
   "description": "Test task 1 by iwong",
   "main": "build/server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wongteam/0001-TT-geekstaff.git"
+  },
   "scripts": {
     "clean": "rimraf build",
+    "start-api-server": "json-server --watch ./api/db.json --routes ./api/routes.json --port 3005",
     "prebuild": "npm run clean",
     "build": "webpack --config config/webpack/index.js",
     "build:prod": "cross-env NODE_ENV=production npm run build",
@@ -24,6 +29,7 @@
     "@types/enzyme": "^2.8.0",
     "@types/history": "^4.5.0",
     "@types/isomorphic-fetch": "0.0.34",
+    "@types/lodash": "^4.14.74",
     "@types/mocha": "^2.2.38",
     "@types/node": "^7.0.0",
     "@types/react": "^15.0.0",
@@ -94,12 +100,16 @@
     "webpack-manifest-plugin": "^1.1.0"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "chalk": "^1.1.3",
     "compression": "^1.6.2",
     "es6-promise": "^4.0.5",
     "express": "^4.14.0",
+    "font-awesome": "^4.7.0",
     "history": "^4.5.1",
     "isomorphic-fetch": "^2.2.1",
+    "json-server": "^0.12.0",
+    "lodash": "^4.17.4",
     "react": "~15.4.2",
     "react-css-modules": "^4.1.0",
     "react-dom": "~15.4.2",
@@ -110,7 +120,7 @@
     "redux": "^3.6.0",
     "redux-connect": "^5.0.0",
     "redux-logger": "^2.7.4",
-    "redux-observable": "^0.16.0",
+    "redux-observable": "0.14.1",
     "redux-thunk": "^2.2.0",
     "rxjs": "^5.4.3",
     "serialize-javascript": "1.3.0",

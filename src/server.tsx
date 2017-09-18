@@ -6,6 +6,7 @@ import 'isomorphic-fetch';
 
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
+import * as jsonServer from 'json-server';
 
 import { Provider } from 'react-redux';
 import { createMemoryHistory, match } from 'react-router';
@@ -24,6 +25,18 @@ const Chalk = require('chalk');
 const favicon = require('serve-favicon');
 
 const app = express();
+
+// configure json server
+// json-server
+const server = jsonServer.create();
+console.log(path.join(__dirname, '../api/db.json'));
+const router = jsonServer.router(path.join(__dirname, '../api/db.json'));
+const middlewares = jsonServer.defaults();
+server.use(jsonServer.rewriter({
+  '/api/v1/*': '/$1',
+}));
+server.use(middlewares);
+server.use(router);
 
 app.use(compression());
 
@@ -79,6 +92,11 @@ app.get('*', (req, res) => {
     });
 });
 
+// listen to fake json server (production only)
+server.listen(3005, () => {
+  console.log('JSON Server is running');
+});
+// listen to app
 app.listen(appConfig.port, appConfig.host, (err) => {
   if (err) {
     console.error(Chalk.bgRed(err));
